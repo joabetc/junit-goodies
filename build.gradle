@@ -9,7 +9,7 @@ repositories {
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
-def junit5Version = '5.4.0'
+def junit5Version = '5.9.0'
 
 dependencies {
 
