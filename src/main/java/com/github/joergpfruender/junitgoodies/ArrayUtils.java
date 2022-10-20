@@ -25,6 +25,9 @@ import java.lang.reflect.Array;
  * commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/ArrayUtils.html
  */
 public class ArrayUtils {
+
+  private ArrayUtils() { }
+  
   /**
    * <p>Adds all the elements of the given arrays into a new array.
    * <p>The new array contains all of the element of {@code array1} followed
