@@ -25,6 +25,8 @@ import java.util.stream.Stream;
  */
 public class ParameterizedTestHelper {
 
+  private ParameterizedTestHelper() { }
+
   /**
    * creates the cartesian product of two argument streams
    * <p>
