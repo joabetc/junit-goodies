@@ -44,14 +44,14 @@ class ParameterizedTestHelperTest {
 
   @ParameterizedTest
   @MethodSource("additionSamples")
-  public void testAddition(Integer i1, Integer i2, Integer i3) {
+  void testAddition(Integer i1, Integer i2, Integer i3) {
     int actual = i1 + i2;
     assertThat(actual).isEqualTo(i3.intValue());
   }
 
   @ParameterizedTest
   @MethodSource("emptyStrings1")
-  public void trim(String input) {
+  void trim(String input) {
     assertThat(input.trim()).isEmpty();
   }
 
@@ -61,7 +61,7 @@ class ParameterizedTestHelperTest {
 
   @ParameterizedTest
   @MethodSource("combinedParams1")
-  public void exampleCombination1(Integer i1, Integer i2, Integer i3, String emptyString) {
+  void exampleCombination1(Integer i1, Integer i2, Integer i3, String emptyString) {
     int addition = i1 + i2;
     String actual = addition + emptyString.trim();
     assertThat(Integer.parseInt(actual)).isEqualTo(i3.intValue());
@@ -73,7 +73,7 @@ class ParameterizedTestHelperTest {
 
   @ParameterizedTest
   @MethodSource("combinedParams2")
-  public void exampleCombination2(String emptyString, Integer i1, Integer i2, Integer i3) {
+  void exampleCombination2(String emptyString, Integer i1, Integer i2, Integer i3) {
     int addition = i1 + i2;
     String actual = addition + emptyString.trim();
     assertThat(Integer.parseInt(actual)).isEqualTo(i3.intValue());
@@ -85,9 +85,8 @@ class ParameterizedTestHelperTest {
 
   @ParameterizedTest
   @MethodSource("combinedParams3")
-  public void exampleCombination3(String emptyString, Integer simpleNumber) {
+  void exampleCombination3(String emptyString, Integer simpleNumber) {
     String actual = simpleNumber + emptyString.trim();
     assertThat(Integer.parseInt(actual)).isEqualTo(simpleNumber.intValue());
   }
-
 }
