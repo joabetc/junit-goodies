@@ -42,14 +42,14 @@ class ParameterizedTestHelperTest {
     return Stream.of(2, 7, 9);
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}] {0} + {1} = {2}")
   @MethodSource("additionSamples")
   void testAddition(Integer i1, Integer i2, Integer i3) {
     int actual = i1 + i2;
     assertThat(actual).isEqualTo(i3.intValue());
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}] \"{0}\" after trim is empty")
   @MethodSource("emptyStrings1")
   void trim(String input) {
     assertThat(input.trim()).isEmpty();
@@ -59,7 +59,7 @@ class ParameterizedTestHelperTest {
     return ParameterizedTestHelper.cartesian(additionSamples(), emptyStrings1());
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}] parseInt({0} + {1} + \"{3}\") = {2}")
   @MethodSource("combinedParams1")
   void exampleCombination1(Integer i1, Integer i2, Integer i3, String emptyString) {
     int addition = i1 + i2;
@@ -71,7 +71,7 @@ class ParameterizedTestHelperTest {
     return ParameterizedTestHelper.cartesian(emptyStrings2(), additionSamples());
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}] parseInt({1} + {2} + \"{0}\") = {3}")
   @MethodSource("combinedParams2")
   void exampleCombination2(String emptyString, Integer i1, Integer i2, Integer i3) {
     int addition = i1 + i2;
@@ -83,7 +83,7 @@ class ParameterizedTestHelperTest {
     return ParameterizedTestHelper.cartesian(emptyStrings1(), simpleNumbers());
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}] {1} + \"{0}\" = {1}")
   @MethodSource("combinedParams3")
   void exampleCombination3(String emptyString, Integer simpleNumber) {
     String actual = simpleNumber + emptyString.trim();
