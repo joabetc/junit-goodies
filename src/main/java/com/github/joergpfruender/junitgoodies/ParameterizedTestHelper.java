@@ -29,17 +29,41 @@ public class ParameterizedTestHelper {
   private ParameterizedTestHelper() { }
 
   /**
-   * creates the cartesian product of two argument streams
+   * Creates the cartesian product of two argument streams.
    * <p>
-   * look at ParameterizedTestHelperTest for usage examples
+   *     Example:
+   *     <pre>
+   *         public static Stream&#60;Arguments&#62; additionSamples() {
+   *            return Stream.of(
+   *               Arguments.of(0, 2, 2),
+   *               Arguments.of(1, 3, 4),
+   *               Arguments.of(2, 7, 9));
+   *         }
    *
-   * @param a stream of JUnit5 arguments
-   * @param b stream of JUnit5 arguments
-   * @return the cartesian product where each tuple of arguments of stream a is multiplied by the tuple of arguments of stream b
+   *         private static Stream&#60;String&#62; emptyStrings() {
+   *            return Stream.of("   ", "");
+   *         }
+   *
+   *         public static Stream&#60;Arguments&#62; combinedParams() {
+   *            return ParameterizedTestHelper.cartesian(additionSamples(), emptyStrings());
+   *         }
+   *
+   *         &#64;ParameterizedTest(name = "[{index}] parseInt({0} + {1} + \"{3}\") = {2}")
+   *         &#64;MethodSource("combinedParams1")
+   *         void exampleCombination1(Integer i1, Integer i2, Integer i3, String emptyString) {
+   *            int addition = i1 + i2;
+   *            String actual = addition + emptyString.trim();
+   *            assertThat(Integer.parseInt(actual)).isEqualTo(i3.intValue());
+   *         }
+   *     </pre>
+   *
+   * @param streamA {@link Stream} of {@link Arguments}
+   * @param streamB {@link Stream} of {@link Arguments}
+   * @return The cartesian product where each tuple of arguments of streamA is multiplied by the tuple of arguments of streamB
    */
-  public static <T, O> Stream<Arguments> cartesian(Stream<T> a, Stream<O> b) {
-    List<T> argumentsA = a.collect(Collectors.toList());
-    List<O> argumentsB = b.collect(Collectors.toList());
+  public static <T, O> Stream<Arguments> cartesian(Stream<T> streamA, Stream<O> streamB) {
+    List<T> argumentsA = streamA.collect(Collectors.toList());
+    List<O> argumentsB = streamB.collect(Collectors.toList());
 
     List<Arguments> result = cartesian(argumentsA, argumentsB);
 
