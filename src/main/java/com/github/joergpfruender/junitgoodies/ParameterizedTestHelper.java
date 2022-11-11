@@ -71,11 +71,8 @@ public final class ParameterizedTestHelper {
   static <T, O> Stream<Arguments> cartesian(List<T> argumentsA, List<O> argumentsB) {
     List<Arguments> result = new ArrayList<>();
     for (Object o : argumentsA) {
-      Object[] objects = asArray(o);
       for (Object o1 : argumentsB) {
-        Object[] objects1 = asArray(o1);
-
-        Object[] arguments = ArrayUtils.addAll(objects, objects1);
+        Object[] arguments = ArrayUtils.addAll(asArray(o), asArray(o1));
         result.add(Arguments.of(arguments));
       }
     }
