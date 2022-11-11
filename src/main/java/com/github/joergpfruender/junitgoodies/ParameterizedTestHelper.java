@@ -65,12 +65,10 @@ public class ParameterizedTestHelper {
     List<T> argumentsA = streamA.collect(Collectors.toList());
     List<O> argumentsB = streamB.collect(Collectors.toList());
 
-    List<Arguments> result = cartesian(argumentsA, argumentsB);
-
-    return result.stream();
+    return cartesian(argumentsA, argumentsB);
   }
 
-  static <T, O> List<Arguments> cartesian(List<T> argumentsA, List<O> argumentsB) {
+  static <T, O> Stream<Arguments> cartesian(List<T> argumentsA, List<O> argumentsB) {
     List<Arguments> result = new ArrayList<>();
     for (Object o : argumentsA) {
       Object[] objects = asArray(o);
@@ -81,7 +79,8 @@ public class ParameterizedTestHelper {
         result.add(Arguments.of(arguments));
       }
     }
-    return result;
+
+    return result.stream();
   }
 
   private static Object[] asArray(Object o) {
@@ -91,6 +90,7 @@ public class ParameterizedTestHelper {
     } else {
       objects = new Object[]{o};
     }
+
     return objects;
   }
 }
