@@ -14,24 +14,30 @@
    limitations under the License.
 
  */
-package com.github.joergpfruender.junitgoodies;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.junit.jupiter.params.provider.Arguments;
+package com.github.joergpfruender.junitgoodies;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.jupiter.params.provider.Arguments;
 
+/**
+ * Test Helper for Parameterized Tests.
+ */
 public final class ParameterizedTestHelper {
 
+  /**
+   * Private constructor to prevent instantiation.
+   */
   private ParameterizedTestHelper() { }
 
   /**
    * Creates the cartesian product of two argument streams.
-   * <p>
-   *     Example:
+   *
+   * <p>Example:
    *     <pre>
    *         public static Stream&#60;Arguments&#62; additionSamples() {
    *            return Stream.of(
@@ -59,7 +65,8 @@ public final class ParameterizedTestHelper {
    *
    * @param streamA {@link Stream} of {@link Arguments}
    * @param streamB {@link Stream} of {@link Arguments}
-   * @return The cartesian product where each tuple of arguments of streamA is multiplied by the tuple of arguments of streamB
+   * @return The cartesian product where each tuple of arguments of streamA is multiplied by the
+   *         tuple of arguments of streamB
    */
   public static <T, O> Stream<Arguments> cartesian(Stream<T> streamA, Stream<O> streamB) {
     List<T> argumentsA = streamA.collect(Collectors.toList());
