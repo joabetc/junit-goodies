@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'pmd'
+    id 'maven-publish'
 }
 
 group = 'com.github.joergpfruender.junitgoodies'
