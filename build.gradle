@@ -3,6 +3,9 @@ plugins {
     id 'pmd'
 }
 
+group = 'com.github.joergpfruender.junitgoodies'
+version = '1.0-SNAPSHOT'
+
 repositories {
     mavenCentral()
 }
